@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather forecast</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="topbar">
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="toggleDropdown()">Maps</button>
+            <div id="dropdownOptions" class="dropdown-options" style="display: none;">
+                <button onclick="window.location.href='index3.html?layer=clouds'">Clouds</button>
+                <button onclick="window.location.href='index3.html?layer=precipitation'">Precipitation</button>
+                <button onclick="window.location.href='index3.html?layer=pressure'">Sea level pressure</button>
+                <button onclick="window.location.href='index3.html?layer=wind'">Wind Speed</button>
+                <button onclick="window.location.href='index3.html?layer=temp'">Temperature</button>
+            </div>
+            <button class="dropdown-button" onclick="window.location.href='index4.html'">Pollution</button>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h1>Weather forecast</h1>
+        <form id="weatherForm">
+            <input type="text" id="city" placeholder="Enter city" required>
+            <button type="submit">Find</button>
+        </form>
+
+        <div id="weatherResult">
+            <h2 id="cityName"></h2>
+            <p id="temperature"></p>
+            <p id="description"></p>
+            <img id="icon" alt="" style="display:none;">
+            <button id="goToIndex2" style="display:none;" onclick="goToIndex2()">Go to the five-day forecast</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownOptions = document.getElementById('dropdownOptions');
+            dropdownOptions.style.display = dropdownOptions.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+    <script src="static/script.js"></script>
+</body>
+</html>
