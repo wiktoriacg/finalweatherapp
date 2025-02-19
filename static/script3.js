@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const API_KEY = "1ea56f1bd7186d778a1a303f42b7842a"; // Wstaw swój klucz API
+    const API_KEY = "1ea56f1bd7186d778a1a303f42b7842a"; 
 
-    // Pobierz warstwę z parametru URL
+    
     const urlParams = new URLSearchParams(window.location.search);
     const layer = urlParams.get("layer");
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "temp": "Temperature"
     };
 
-    // Zmień nagłówek
+    
     const mapTitle = document.getElementById("mapTitle");
     mapTitle.textContent = layerNames[layer] || "Weather Map";
 

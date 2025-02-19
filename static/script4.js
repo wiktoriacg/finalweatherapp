@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const API_KEY = "1ea56f1bd7186d778a1a303f42b7842a"; // Wstaw swój klucz API
+    const API_KEY = "1ea56f1bd7186d778a1a303f42b7842a"; 
 
     document.getElementById("pollutionForm").addEventListener("submit", function (event) {
         event.preventDefault();

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-const API_KEY = "1ea56f1bd7186d778a1a303f42b7842a"; // Wstaw swój klucz API
+const API_KEY = "1ea56f1bd7186d778a1a303f42b7842a"; 
 
 function getFiveDaysForecast(city) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
@@ -47,9 +47,9 @@ function getFiveDaysForecast(city) {
                     canvas.id = `chart-${day}`;
                     dayContainer.appendChild(canvas);
                     
-                    displayTemperatureChart(dayData, canvas); // Teraz funkcja jest zdefiniowana
+                    displayTemperatureChart(dayData, canvas); 
 
-                    const table = generateTableForDay(dayData); // Teraz funkcja jest zdefiniowana
+                    const table = generateTableForDay(dayData); 
                     dayContainer.appendChild(table);
 
                     forecastContainer.appendChild(dayContainer);
@@ -59,7 +59,7 @@ function getFiveDaysForecast(city) {
         .catch(error => console.error('Error:', error));
 }
 
-// 📌 Funkcja generująca wykres temperatury (poprawiony błąd)
+// Funkcja generująca wykres temperatury 
 function displayTemperatureChart(data, canvas) {
     const times = data.map(forecast => convertToCST(forecast.dt_txt));
     const temperatures = data.map(forecast => forecast.main.temp);
@@ -86,13 +86,13 @@ function displayTemperatureChart(data, canvas) {
     });
 }
 
-// 📌 Funkcja pomocnicza do konwersji czasu UTC → CST
+//  Funkcja pomocnicza do konwersji czasu UTC → CST
 function convertToCST(datetimeString) {
     const date = new Date(datetimeString + ' UTC');
     return date.toLocaleString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit' });
 }
 
-// 📌 Funkcja generująca tabelę dla prognozy
+// Funkcja generująca tabelę dla prognozy
 function generateTableForDay(dayData) {
     const table = document.createElement('table');
     table.classList.add('forecast-table');
@@ -125,7 +125,7 @@ function generateTableForDay(dayData) {
     return table;
 }
 
-// 📌 Funkcja pomocnicza do konwersji temperatury na Fahrenheity
+// Funkcja pomocnicza do konwersji temperatury na Fahrenheity
 function convertToFahrenheit(celsius) {
     return (celsius * 9/5 + 32).toFixed(1);
 }
