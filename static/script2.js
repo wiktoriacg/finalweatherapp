@@ -61,7 +61,7 @@ function getFiveDaysForecast(city) {
 
 // Funkcja generująca wykres temperatury 
 function displayTemperatureChart(data, canvas) {
-    const times = data.map(forecast => convertToCST(forecast.dt_txt));
+    const times = data.map(forecast => convertToUTC(forecast.dt_txt)); // Zmiana z CST na UTC
     const temperatures = data.map(forecast => forecast.main.temp);
 
     new Chart(canvas, {
@@ -86,10 +86,10 @@ function displayTemperatureChart(data, canvas) {
     });
 }
 
-//  Funkcja pomocnicza do konwersji czasu UTC → CST
-function convertToCST(datetimeString) {
+// Funkcja pomocnicza do konwersji czasu UTC → UTC
+function convertToUTC(datetimeString) {
     const date = new Date(datetimeString + ' UTC');
-    return date.toLocaleString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit' });
+    return date.toISOString().slice(11, 16);   // Zwraca czas w formacie: YYYY-MM-DD HH:MM:SS
 }
 
 // Funkcja generująca tabelę dla prognozy
@@ -109,11 +109,11 @@ function generateTableForDay(dayData) {
 
     dayData.forEach(forecast => {
         const row = document.createElement('tr');
-        const cstTime = convertToCST(forecast.dt_txt);
+        const utcTime = convertToUTC(forecast.dt_txt); // Zmiana na UTC
         const tempF = convertToFahrenheit(forecast.main.temp);
         const feelsLikeF = convertToFahrenheit(forecast.main.feels_like);
         row.innerHTML = `
-            <td>${cstTime}</td>
+            <td>${utcTime}</td>
             <td><span class="temperature-fahrenheit">${tempF} F</span> / ${forecast.main.temp}°C</td>
             <td><span class="temperature-fahrenheit">${feelsLikeF} F</span> / ${forecast.main.feels_like}°C</td>
             <td>${forecast.main.humidity}%</td>
